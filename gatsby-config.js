@@ -43,5 +43,12 @@ module.exports = {
         pages: path.join(__dirname, 'src/pages'),
       },
     },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        sassRuleTest: /\.global\.s(a|c)ss$/,
+        sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
+      },
+    },
   ],
 };
