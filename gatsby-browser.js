@@ -5,3 +5,6 @@
  */
 
 // You can delete this file if you're not using it
+
+require('./src/styles/reset.scss');
+require('./src/styles/global.scss');
