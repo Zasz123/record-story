@@ -44,25 +44,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        sassRuleTest: /\.global\.s(a|c)ss$/,
-        sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
-      },
-    },
-    {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: require.resolve('./src/components/layout/Layout.tsx'),
       },
     },
-    `gatsby-plugin-sass`,
-    // {
-    //   resolve: `gatsby-plugin-sass`,
-    //   options: {
-    //     sassRuleTest: /\.global\.s(a|c)ss$/,
-    //     sassRuleModulesTest: /\.mod\.s(a|c)ss$/,
-    //   },
-    // },
   ],
 };
