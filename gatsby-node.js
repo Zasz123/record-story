@@ -6,7 +6,3 @@ exports.onCreateBabelConfig = ({ actions }) => {
     },
   });
 };
-
-exports.createPages = () => {
-  console.log('I will create page');
-};
