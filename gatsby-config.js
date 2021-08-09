@@ -49,5 +49,6 @@ module.exports = {
         component: require.resolve('./src/components/layout/Layout.tsx'),
       },
     },
+    `gatsby-plugin-styled-components`,
   ],
 };
