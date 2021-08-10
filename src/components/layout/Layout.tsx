@@ -1,4 +1,15 @@
+import styled, { ThemeProvider } from 'styled-components';
+import GlobalStyles from 'styles/GlobalStyles';
+import Theme from 'styles/Theme';
+
 import Sidebar from './Sidebar';
+
+const Container = styled.main`
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+`;
 
 interface IProps {
   children: React.ReactNode;
@@ -6,10 +17,13 @@ interface IProps {
 
 function Layout({ children }: IProps) {
   return (
-    <div>
-      <Sidebar />
-      layout{children}
-    </div>
+    <ThemeProvider theme={Theme}>
+      <GlobalStyles />
+      <Container>
+        <Sidebar />
+        {children}
+      </Container>
+    </ThemeProvider>
   );
 }
 
