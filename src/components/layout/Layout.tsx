@@ -6,9 +6,11 @@ import Sidebar from './Sidebar';
 
 const Container = styled.main`
   width: 100%;
-  height: 100%;
+  height: 100vh;
 
   display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 570px 1fr;
 `;
 
 interface IProps {

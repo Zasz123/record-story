@@ -9,11 +9,6 @@ const GlobalStyles = createGlobalStyle`
 
         margin: 0;
     }
-
-    html, body {
-        width: 100%;
-        height: 100vh;
-    }
 `;
 
 export default GlobalStyles;

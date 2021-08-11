@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const Container = styled.nav`
+  width: 570px;
   height: 100%;
 `;
 
