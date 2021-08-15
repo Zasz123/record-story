@@ -6,13 +6,13 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "jsx": "preserve",
     "baseUrl": "src",
     "paths": {
       "components/*": ["./components/*"],
       "pages/*": ["./pages/*"]
-    }
+    },
+    "allowJs": true,
+    "jsx": "preserve"
   },
   "include": ["./src/**/*.tsx"],
   "exclude": ["node_modules"]
