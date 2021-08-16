@@ -2,7 +2,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyles from 'styles/GlobalStyles';
 import Theme from 'styles/Theme';
 
-import Sidebar from './Sidebar';
+import Sidebar from '../sidebar/Sidebar';
 
 const Container = styled.main`
   width: 100%;
@@ -11,6 +11,8 @@ const Container = styled.main`
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 570px 1fr;
+
+  overflow: hidden;
 `;
 
 interface IProps {
