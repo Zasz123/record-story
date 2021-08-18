@@ -10,7 +10,7 @@ const Container = styled.nav`
 `;
 
 const RollableRecord = styled.img<{ rotate: number }>`
-  width: 960px;
+  width: auto;
   height: 100%;
   position: absolute;
   left: -450px;
