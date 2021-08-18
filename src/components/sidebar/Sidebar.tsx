@@ -1,5 +1,7 @@
-import { useState } from 'react';
 import styled from 'styled-components';
+
+import { animated, useSpring } from 'react-spring';
+import { useDrag } from 'react-use-gesture';
 
 import RecordImage from '../../images/record.png';
 import RecordBackgroundExample from '../../images/record-background-example.jpg';
@@ -13,47 +15,29 @@ const Container = styled.nav`
   background-position: center center;
 `;
 
-const RollableRecord = styled.img<{ rotate: number }>`
+const RollableRecord = styled(animated.img)`
   width: auto;
   height: 100%;
   position: absolute;
   left: -450px;
-  transform: rotate(${({ rotate }) => rotate}deg);
   pointer-events: none;
 `;
 
 function Sidebar() {
-  const [rotate, setRotate] = useState(0);
-  const [onMove, setOnMove] = useState(false);
-  const [dragStart, setDragStart] = useState<number>(0);
-
-  const onMouseUp = () => {
-    setOnMove(false);
-  };
-
-  const onMouseDown = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-    setOnMove(true);
-    setDragStart(event.clientY);
-  };
-
-  const onMouseMove = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-    if (!onMove) {
-      return;
+  const [springProps, springAPI] = useSpring(() => ({
+    rotate: 0,
+  }));
+  const gestureBind = useDrag(({ active, movement: [, moveY] }) => {
+    if (active) {
+      springAPI.start({
+        rotate: springProps.rotate.get() - Number((moveY % 360).toFixed()),
+      });
     }
-
-    const nowY = event.clientY;
-    const rotateValue = rotate - ((dragStart - nowY) % 360);
-
-    setRotate(rotateValue);
-  };
-
-  const onMouseLeave = () => {
-    setOnMove(false);
-  };
+  });
 
   return (
-    <Container onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
-      <RollableRecord src={RecordImage} alt="record_image" rotate={rotate} />
+    <Container {...gestureBind()}>
+      <RollableRecord src={RecordImage} alt="record_image" style={{ rotate: springProps.rotate }} />
     </Container>
   );
 }
