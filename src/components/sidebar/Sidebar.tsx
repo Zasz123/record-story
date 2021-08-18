@@ -2,11 +2,15 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import RecordImage from '../../images/record.png';
+import RecordBackgroundExample from '../../images/record-background-example.jpg';
 
 const Container = styled.nav`
   width: 570px;
   height: 100%;
   position: relative;
+
+  background-image: url(${RecordBackgroundExample});
+  background-position: center center;
 `;
 
 const RollableRecord = styled.img<{ rotate: number }>`
@@ -21,7 +25,7 @@ const RollableRecord = styled.img<{ rotate: number }>`
 function Sidebar() {
   const [rotate, setRotate] = useState(0);
   const [onMove, setOnMove] = useState(false);
-  const [dragStart, setDragStart] = useState(0);
+  const [dragStart, setDragStart] = useState<number>(0);
 
   const onMouseUp = () => {
     setOnMove(false);
