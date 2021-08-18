@@ -42,11 +42,9 @@ function Sidebar() {
     }
 
     const nowY = event.clientY;
-    const rotateValue = (dragStart - nowY) % 360;
+    const rotateValue = rotate - ((dragStart - nowY) % 360);
 
-    // 마우스 진행방향으로 움직이도록 수정.
-    // 이렇게 하지 않으면 마우스의 반대 방향으로 움직임.
-    setRotate(rotateValue > 0 ? -rotateValue : Math.abs(rotateValue));
+    setRotate(rotateValue);
   };
 
   const onMouseLeave = () => {
@@ -55,15 +53,7 @@ function Sidebar() {
 
   return (
     <Container onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
-      <RollableRecord
-        src={RecordImage}
-        alt="record_image"
-        rotate={rotate}
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
-        onMouseMove={onMouseMove}
-        onMouseLeave={onMouseLeave}
-      />
+      <RollableRecord src={RecordImage} alt="record_image" rotate={rotate} />
     </Container>
   );
 }
