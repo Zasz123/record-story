@@ -21,18 +21,24 @@ const RollableRecord = styled(animated.img)`
   position: absolute;
   left: -450px;
   pointer-events: none;
+  user-select: none;
 `;
 
 function Sidebar() {
+
   const [springProps, springAPI] = useSpring(() => ({
     rotate: 0,
   }));
-  const gestureBind = useDrag(({ active, movement: [, moveY] }) => {
-    if (active) {
-      springAPI.start({
-        rotate: springProps.rotate.get() - Number((moveY % 360).toFixed()),
-      });
+
+  const gestureBind = useDrag(({ active, movement: [, moveY], direction: [, directionY], distance, cancel }) => {
     }
+
+    const rotate = springProps.rotate.get() - Number((moveY % 360).toFixed());
+
+    springAPI.start({
+      rotate,
+    });
+
   });
 
   return (
