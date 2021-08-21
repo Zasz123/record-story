@@ -13,14 +13,19 @@ const Container = styled.div`
 `;
 
 const CarouselItemWrapper = styled(animated.div)`
+  position: relative;
   display: inline-block;
   width: 300px;
   user-select: none;
 `;
 
-const CarouselItemImage = styled.img`
-  width: 100%;
-  height: auto;
+const CarouselItemImage = styled(animated.img)`
+  position: absolute;
+  width: 300px;
+  height: 200px;
+
+  object-fit: cover;
+
   pointer-events: none;
   user-select: none;
 `;
@@ -28,9 +33,10 @@ const CarouselItemImage = styled.img`
 interface IProps {
   carouselExamples: { id: number; url: any }[];
   carouselProps: {
-    display: SpringValue<string>;
     x: SpringValue<number>;
     y: SpringValue<number>;
+    scale: SpringValue<number>;
+    display: SpringValue<string>;
   }[];
 }
 
@@ -39,7 +45,7 @@ function SidebarCarousel({ carouselExamples, carouselProps }: IProps) {
     <Container>
       {carouselProps.map((item, index) => (
         <CarouselItemWrapper key={carouselExamples[index].id} style={{ x: item.x, y: item.y, display: item.display }}>
-          <CarouselItemImage alt="carousel_item" src={carouselExamples[index].url} />
+          <CarouselItemImage alt="carousel_item" src={carouselExamples[index].url} style={{ scale: item.scale }} />
         </CarouselItemWrapper>
       ))}
     </Container>
