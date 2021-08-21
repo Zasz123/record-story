@@ -19,6 +19,10 @@ const CAROUSEL_EXAMPLES = [
   { id: 2, url: Example2 },
   { id: 3, url: Example3 },
   { id: 4, url: Example4 },
+  { id: 5, url: Example1 },
+  { id: 6, url: Example2 },
+  { id: 7, url: Example3 },
+  { id: 8, url: Example4 },
 ];
 
 const Container = styled.nav`
@@ -50,7 +54,8 @@ function Sidebar() {
     CAROUSEL_EXAMPLES.length,
     (index) => ({
       x: index === selectedIndex ? 250 : 50,
-      y: index * (height * 0.2) + height * 0.4,
+      y: index === selectedIndex ? height * 0.5 - 100 : (index - selectedIndex) * height,
+      scale: index === selectedIndex ? 1 : 0.7,
       display: 'block',
     }),
     [height],
@@ -59,9 +64,9 @@ function Sidebar() {
   const gestureBind = useDrag(({ active, movement: [, moveY], direction: [, directionY], distance, cancel }) => {
     const newIndex = selectedIndex + (directionY > 0 ? -1 : 1);
 
-    if (active && distance > height * 0.1) {
-      // 이미지 length보다 더 커지거나 작아지면 막는 코드
+    if (active && distance > height * 0.15) {
       if (newIndex < 0 || newIndex > CAROUSEL_EXAMPLES.length - 1) {
+        // 이미지 length보다 더 커지거나 작아지면 막는 코드
         return;
       }
 
@@ -76,14 +81,26 @@ function Sidebar() {
     });
 
     carouselAPI.start((index) => {
-      if (index < selectedIndex - 2 || index > selectedIndex + 2) {
+      if (index < selectedIndex - 1 || index > selectedIndex + 1) {
         return { display: 'none' };
       }
 
-      const x = index === selectedIndex ? 250 : 50;
-      const y = (index - selectedIndex) * (height * 0.2) + (active ? moveY : 0);
+      const nowIndex = index - selectedIndex;
 
-      return { x, y, display: 'block' };
+      let x = 50;
+      let y = nowIndex * height;
+      let scale = 0.7;
+
+      if (index === selectedIndex) {
+        x = 250;
+        y = height * 0.5 - 100;
+        scale = 1;
+      }
+
+      // 스크롤시의 움직인만큼 더해줌
+      y += active ? moveY : 0;
+
+      return { x, y, scale, display: 'block' };
     });
   });
 
