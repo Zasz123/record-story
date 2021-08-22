@@ -7,7 +7,7 @@ import useMeasure from 'react-use-measure';
 import SidebarCarousel from './SidebarCarousel';
 
 import RecordImage from '../../images/record.png';
-import RecordBackgroundExample from '../../images/record-background-example.jpg';
+import RecordPlayer from '../../images/record-player.jpg';
 
 import Example1 from '../../images/example_carousel/1.jpg';
 import Example2 from '../../images/example_carousel/2.jpg';
@@ -30,8 +30,8 @@ const Container = styled.nav`
   height: 100%;
   position: relative;
 
-  background-image: url(${RecordBackgroundExample});
-  background-position: center center;
+  background-image: url(${RecordPlayer});
+  background-position: right;
 `;
 
 const RollableRecord = styled(animated.img)`
