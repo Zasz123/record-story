@@ -15,6 +15,13 @@ const Container = styled.main`
   overflow: hidden;
 `;
 
+const ArticleContainer = styled.main`
+  width: 100%;
+  height: 100%;
+
+  padding: 30px;
+`;
+
 interface IProps {
   children: React.ReactNode;
 }
@@ -25,7 +32,7 @@ function Layout({ children }: IProps) {
       <GlobalStyles />
       <Container>
         <Sidebar />
-        {children}
+        <ArticleContainer>{children}</ArticleContainer>
       </Container>
     </ThemeProvider>
   );
