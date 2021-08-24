@@ -14,9 +14,8 @@ export const query = graphql`
         startDate
         endDate
         images {
-          childImageSharp {
-            gatsbyImageData
-          }
+          id
+          publicURL
         }
         path
       }
