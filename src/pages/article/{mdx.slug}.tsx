@@ -1,16 +1,9 @@
-import { graphql, PageProps } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Article from 'components/article/Article';
 
-interface IProps {
-  title: string;
-  startDate: Date;
-  endDate: Date;
-  images: any[];
-}
-
-function ArticlePage({ data }: PageProps<IProps>) {
-  return <Article />;
+function ArticlePage({ data }: any) {
+  return <Article article={data.mdx.frontmatter} body={data.mdx.body} />;
 }
 
 export const query = graphql`
@@ -21,10 +14,12 @@ export const query = graphql`
         startDate
         endDate
         images {
-          uid
+          childImageSharp {
+            gatsbyImageData
+          }
         }
+        path
       }
-      id
       body
     }
   }
