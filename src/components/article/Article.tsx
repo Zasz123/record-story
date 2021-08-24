@@ -3,7 +3,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { IArticle } from 'interfaces/article';
 
-import ArticleImageGrid from 'components/article/ArticleImageGrid';
+import ArticleImages from 'components/article/ArticleImages';
 
 const Container = styled.div`
   padding: 20px;
@@ -28,7 +28,7 @@ function Article({ article, body }: IProps) {
     <Container>
       <Title>{article.title}</Title>
       <Body>{body}</Body>
-      <ArticleImageGrid images={article.images} />
+      <ArticleImages images={article.images} />
     </Container>
   );
 }
