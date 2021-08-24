@@ -28,6 +28,8 @@ const CAROUSEL_EXAMPLES = [
 const Container = styled.nav`
   width: 570px;
   height: 100%;
+
+  flex: 0 0 570px;
   position: relative;
 
   background-image: url(${RecordPlayer});

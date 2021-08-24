@@ -8,18 +8,17 @@ const Container = styled.main`
   width: 100%;
   height: 100vh;
 
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 570px 1fr;
-
   overflow: hidden;
+
+  display: flex;
+  flex-direction: row;
 `;
 
 const ArticleContainer = styled.main`
-  width: 100%;
+  width: 1350px;
   height: 100%;
 
-  padding: 30px;
+  padding: 40px;
 `;
 
 interface IProps {

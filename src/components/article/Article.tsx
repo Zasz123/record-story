@@ -6,16 +6,28 @@ import { IArticle } from 'interfaces/article';
 import ArticleImages from 'components/article/ArticleImages';
 
 const Container = styled.div`
-  padding: 20px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
-const Title = styled.div`
+const ArticleContent = styled.article`
+  flex: 1;
+`;
+
+const Title = styled.h1`
   font-size: 24px;
+  font-weight: bold;
+
   margin-bottom: 20px;
 `;
 
-const Body = styled(MDXRenderer)`
+const Body = styled.p`
   font-size: 18px;
+  line-height: 1.3;
 `;
 
 interface IProps {
@@ -26,8 +38,12 @@ interface IProps {
 function Article({ article, body }: IProps) {
   return (
     <Container>
-      <Title>{article.title}</Title>
-      <Body>{body}</Body>
+      <ArticleContent>
+        <Title>{article.title}</Title>
+        <Body>
+          <MDXRenderer>{body}</MDXRenderer>
+        </Body>
+      </ArticleContent>
       <ArticleImages images={article.images} />
     </Container>
   );
