@@ -11,6 +11,22 @@ const Container = styled.div`
   justify-content: flex-start;
 
   overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #5a5a5a;
+
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #bebebe;
+
+    border-radius: 20px;
+  }
 `;
 
 const ArticleImage = styled.img`
