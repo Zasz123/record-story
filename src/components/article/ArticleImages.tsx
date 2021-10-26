@@ -43,7 +43,7 @@ function ArticleImages({ images }: IProps) {
   return (
     <Container>
       {images.map((item) => {
-        return <ArticleImage src={item.publicURL} alt={item.id} />;
+        return <ArticleImage key={item.id} src={item.publicURL} alt={`article_image_${item.id}`} />;
       })}
     </Container>
   );
