@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 import { SpringValue } from '@react-spring/core';
+import { ISidebarItem } from 'interfaces/article';
 
 const Container = styled.div`
   width: 100%;
@@ -31,7 +32,7 @@ const CarouselItemImage = styled(animated.img)`
 `;
 
 interface IProps {
-  carouselExamples: { id: number; url: any }[];
+  carouselList: Array<ISidebarItem>;
   carouselProps: {
     x: SpringValue<number>;
     y: SpringValue<number>;
@@ -40,12 +41,12 @@ interface IProps {
   }[];
 }
 
-function SidebarCarousel({ carouselExamples, carouselProps }: IProps) {
+function SidebarCarousel({ carouselList, carouselProps }: IProps) {
   return (
     <Container>
       {carouselProps.map((item, index) => (
-        <CarouselItemWrapper key={carouselExamples[index].id} style={{ x: item.x, y: item.y, display: item.display }}>
-          <CarouselItemImage alt="carousel_item" src={carouselExamples[index].url} style={{ scale: item.scale }} />
+        <CarouselItemWrapper key={carouselList[index].id} style={{ x: item.x, y: item.y, display: item.display }}>
+          <CarouselItemImage alt="carousel_item" src={carouselList[index].thumbnail} style={{ scale: item.scale }} />
         </CarouselItemWrapper>
       ))}
     </Container>
