@@ -1,12 +1,9 @@
-import { useMemo } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-
 import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyles from 'styles/GlobalStyles';
 import Theme from 'styles/Theme';
 
-import { ISidebarItem } from 'interfaces/article';
 import Sidebar from '../sidebar/Sidebar';
+import useArticleList from './hooks/useArticleList';
 
 const Container = styled.main`
   width: 100%;
@@ -30,34 +27,7 @@ interface IProps {
 }
 
 function Layout({ children }: IProps) {
-  const articles: Array<ISidebarItem> = useMemo(
-    () =>
-      useStaticQuery(graphql`
-        query MyQuery {
-          allMdx {
-            nodes {
-              id
-              frontmatter {
-                path
-                thumbnail {
-                  publicURL
-                }
-                images {
-                  id
-                  publicURL
-                }
-              }
-            }
-          }
-        }
-      `).allMdx.nodes.map((item: any) => ({
-        id: item.id,
-        path: item.frontmatter.path,
-        thumbnail: item.frontmatter.thumbnail.publicURL,
-        images: item.frontmatter.images,
-      })),
-    [],
-  );
+  const articles = useArticleList();
 
   return (
     <ThemeProvider theme={Theme}>
