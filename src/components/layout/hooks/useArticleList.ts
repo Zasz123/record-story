@@ -1,7 +1,8 @@
 import { useStaticQuery, graphql } from 'gatsby';
+import { ISidebarItem } from '../../../interfaces/article';
 
 export default function useArticleList() {
-  const articles = useStaticQuery(graphql`
+  const articles: Array<ISidebarItem> = useStaticQuery(graphql`
     query MyQuery {
       allMdx {
         nodes {
