@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { navigate } from 'gatsby';
+
 import styled from 'styled-components';
 import { animated, useSpring, useSprings } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import useMeasure from 'react-use-measure';
 
+import { useLayoutContext } from 'components/layout/Layout.provider';
 import { ISidebarItem } from 'interfaces/article';
+
 import SidebarCarousel from './SidebarCarousel';
 
 import RecordImage from '../../images/record.png';
@@ -35,7 +38,7 @@ interface IProps {
 }
 
 function Sidebar({ articles }: IProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { selectedIndex, setSelectedIndex } = useLayoutContext();
   const [ref, { height }] = useMeasure();
 
   const [springProps, springAPI] = useSpring(() => ({
@@ -62,6 +65,7 @@ function Sidebar({ articles }: IProps) {
       }
 
       setSelectedIndex(newIndex);
+      navigate(articles[selectedIndex].path);
       cancel();
     }
 
