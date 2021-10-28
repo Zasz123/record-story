@@ -2,8 +2,11 @@ import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyles from 'styles/GlobalStyles';
 import Theme from 'styles/Theme';
 
-import Sidebar from '../sidebar/Sidebar';
 import useArticleList from './hooks/useArticleList';
+
+import { LayoutProvider } from './Layout.provider';
+
+import Sidebar from '../sidebar/Sidebar';
 
 const Container = styled.main`
   width: 100%;
@@ -33,8 +36,11 @@ function Layout({ children }: IProps) {
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
       <Container>
-        <Sidebar articles={articles} />
-        <ArticleContainer>{children}</ArticleContainer>
+        {/* 선택된 index를 위한 provider */}
+        <LayoutProvider>
+          <Sidebar articles={articles} />
+          <ArticleContainer>{children}</ArticleContainer>
+        </LayoutProvider>
       </Container>
     </ThemeProvider>
   );

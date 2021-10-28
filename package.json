@@ -9,6 +9,7 @@
     "@mdx-js/react": "^1.6.22",
     "@storybook/builder-webpack5": "^6.3.7",
     "@storybook/manager-webpack5": "^6.3.7",
+    "constate": "^3.3.0",
     "gatsby": "^3.11.0",
     "gatsby-plugin-gatsby-cloud": "^2.11.0",
     "gatsby-plugin-image": "^1.11.0",
