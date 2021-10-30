@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { navigate } from 'gatsby';
 
 import styled from 'styled-components';
@@ -7,6 +8,7 @@ import useMeasure from 'react-use-measure';
 
 import { useLayoutContext } from 'components/layout/Layout.provider';
 import { ISidebarItem } from 'interfaces/article';
+import useURLParams from 'hooks/useURLParams';
 
 import SidebarCarousel from './SidebarCarousel';
 
@@ -39,6 +41,8 @@ interface IProps {
 
 function Sidebar({ articles }: IProps) {
   const { selectedIndex, setSelectedIndex } = useLayoutContext();
+  const urlParams = useURLParams();
+
   const [ref, { height }] = useMeasure();
 
   const [springProps, springAPI] = useSpring(() => ({
@@ -98,6 +102,12 @@ function Sidebar({ articles }: IProps) {
       return { x, y, scale, display: 'block' };
     });
   });
+
+  useEffect(() => {
+    if (selectedIndex !== urlParams.articleIndex) {
+      setSelectedIndex(urlParams.articleIndex);
+    }
+  }, [urlParams]);
 
   return (
     <Container {...gestureBind()} ref={ref}>
