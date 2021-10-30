@@ -18,6 +18,13 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: `article`,
+        path: `${__dirname}/article`,
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -42,6 +49,7 @@ module.exports = {
         components: path.join(__dirname, 'src/components'),
         pages: path.join(__dirname, 'src/pages'),
         styles: path.join(__dirname, 'src/styles'),
+        hooks: path.join(__dirname, 'src/hooks'),
       },
     },
     {
@@ -51,13 +59,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: `article`,
-        path: `${__dirname}/article`,
-      },
-    },
     `gatsby-plugin-mdx`,
   ],
 };

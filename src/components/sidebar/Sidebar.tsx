@@ -1,33 +1,25 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { navigate } from 'gatsby';
+
 import styled from 'styled-components';
 import { animated, useSpring, useSprings } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import useMeasure from 'react-use-measure';
+
+import { useLayoutContext } from 'components/layout/Layout.provider';
+import { ISidebarItem } from 'interfaces/article';
+import useURLParams from 'hooks/useURLParams';
 
 import SidebarCarousel from './SidebarCarousel';
 
 import RecordImage from '../../images/record.png';
 import RecordPlayer from '../../images/record-player.jpg';
 
-import Example1 from '../../images/example_carousel/1.jpg';
-import Example2 from '../../images/example_carousel/2.jpg';
-import Example3 from '../../images/example_carousel/3.jpg';
-import Example4 from '../../images/example_carousel/4.jpg';
-
-const CAROUSEL_EXAMPLES = [
-  { id: 1, url: Example1 },
-  { id: 2, url: Example2 },
-  { id: 3, url: Example3 },
-  { id: 4, url: Example4 },
-  { id: 5, url: Example1 },
-  { id: 6, url: Example2 },
-  { id: 7, url: Example3 },
-  { id: 8, url: Example4 },
-];
-
 const Container = styled.nav`
   width: 570px;
   height: 100%;
+
+  flex: 0 0 570px;
   position: relative;
 
   background-image: url(${RecordPlayer});
@@ -43,15 +35,21 @@ const RollableRecord = styled(animated.img)`
   user-select: none;
 `;
 
-function Sidebar() {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+interface IProps {
+  articles: Array<ISidebarItem>;
+}
+
+function Sidebar({ articles }: IProps) {
+  const { selectedIndex, setSelectedIndex } = useLayoutContext();
+  const urlParams = useURLParams();
+
   const [ref, { height }] = useMeasure();
 
   const [springProps, springAPI] = useSpring(() => ({
     rotate: 0,
   }));
   const [carouselProps, carouselAPI] = useSprings(
-    CAROUSEL_EXAMPLES.length,
+    articles.length,
     (index) => ({
       x: index === selectedIndex ? 250 : 50,
       y: index === selectedIndex ? height * 0.5 - 100 : (index - selectedIndex) * height,
@@ -65,12 +63,13 @@ function Sidebar() {
     const newIndex = selectedIndex + (directionY > 0 ? -1 : 1);
 
     if (active && distance > height * 0.15) {
-      if (newIndex < 0 || newIndex > CAROUSEL_EXAMPLES.length - 1) {
+      if (newIndex < 0 || newIndex > articles.length - 1) {
         // 이미지 length보다 더 커지거나 작아지면 막는 코드
         return;
       }
 
       setSelectedIndex(newIndex);
+      navigate(articles[selectedIndex].path);
       cancel();
     }
 
@@ -104,10 +103,16 @@ function Sidebar() {
     });
   });
 
+  useEffect(() => {
+    if (selectedIndex !== urlParams.articleIndex) {
+      setSelectedIndex(urlParams.articleIndex);
+    }
+  }, [urlParams]);
+
   return (
     <Container {...gestureBind()} ref={ref}>
       <RollableRecord src={RecordImage} alt="record_image" style={{ rotate: springProps.rotate }} />
-      <SidebarCarousel carouselExamples={CAROUSEL_EXAMPLES} carouselProps={carouselProps} />
+      <SidebarCarousel carouselList={articles} carouselProps={carouselProps} />
     </Container>
   );
 }
