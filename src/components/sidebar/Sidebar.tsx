@@ -69,7 +69,7 @@ function Sidebar({ articles }: IProps) {
       }
 
       setSelectedIndex(newIndex);
-      navigate(articles[selectedIndex].path);
+      navigate(articles[newIndex].path);
       cancel();
     }
 
