@@ -26,7 +26,7 @@ const Title = styled.h1`
 `;
 
 const Body = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.3;
 `;
 
