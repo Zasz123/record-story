@@ -4,7 +4,7 @@ import { ISidebarItem } from '../../../interfaces/article';
 export default function useArticleList() {
   const articles: Array<ISidebarItem> = useStaticQuery(graphql`
     query MyQuery {
-      allMdx {
+      allMdx(sort: { fields: id, order: DESC }) {
         nodes {
           id
           frontmatter {
