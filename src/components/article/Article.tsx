@@ -12,10 +12,12 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  position: relative;
 `;
 
 const ArticleContent = styled.article`
-  flex: 1;
+  overflow-y: auto;
 `;
 
 const Title = styled.h1`
