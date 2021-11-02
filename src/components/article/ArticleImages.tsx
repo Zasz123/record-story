@@ -55,7 +55,7 @@ const ArticleImageHandle = styled.hr`
   background-color: #7d7d7d;
 `;
 
-const ArticleImageWrapper = styled.article<{ open?: boolean }>`
+const ArticleImageList = styled.article<{ open?: boolean }>`
   display: ${({ open }) => (open ? 'flex' : 'none')};
   gap: 20px;
   flex-wrap: nowrap;
@@ -65,12 +65,32 @@ const ArticleImageWrapper = styled.article<{ open?: boolean }>`
   padding: 5px;
 `;
 
+const ArticleImageWrapper = styled.button`
+  border: none;
+  background: none;
+
+  position: relative;
+`;
+
+const ArticleImageHoverShadow = styled.div`
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    box-shadow: inset 0px 0px 60px #757575;
+  }
+`;
+
 const ArticleImage = styled.img`
   width: 350px;
   height: auto;
   max-height: 300px;
-
-  align-self: center;
 `;
 
 interface IProps {
@@ -85,11 +105,16 @@ function ArticleImages({ images }: IProps) {
       <ArticleImageHandleWrapper onClick={isOpen ? onClose : onOpen}>
         <ArticleImageHandle />
       </ArticleImageHandleWrapper>
-      <ArticleImageWrapper open={isOpen}>
+      <ArticleImageList open={isOpen}>
         {images.map((item) => {
-          return <ArticleImage key={item.id} src={item.publicURL} alt={`article_image_${item.id}`} />;
+          return (
+            <ArticleImageWrapper>
+              <ArticleImage key={item.id} src={item.publicURL} alt={`article_image_${item.id}`} />
+              <ArticleImageHoverShadow />
+            </ArticleImageWrapper>
+          );
         })}
-      </ArticleImageWrapper>
+      </ArticleImageList>
     </Container>
   );
 }
