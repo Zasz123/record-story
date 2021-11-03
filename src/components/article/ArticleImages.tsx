@@ -4,11 +4,12 @@ import useBoolean from 'hooks/useBoolean';
 
 import { IArticle } from 'interfaces/article';
 
-const Container = styled.div`
+const Container = styled.div<{ open?: boolean }>`
   width: 100%;
+  height: ${({ open }) => (open ? '400px' : undefined)};
   background-color: white;
 
-  position: absolute;
+  position: relative;
   left: 0;
   bottom: 0;
 
@@ -55,8 +56,12 @@ const ArticleImageHandle = styled.hr`
   background-color: #7d7d7d;
 `;
 
-const ArticleImageList = styled.article<{ open?: boolean }>`
-  display: ${({ open }) => (open ? 'flex' : 'none')};
+const ArticleImageList = styled.article`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  display: flex;
   gap: 20px;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -101,20 +106,24 @@ function ArticleImages({ images }: IProps) {
   const [isOpen, , onOpen, onClose] = useBoolean();
 
   return (
-    <Container>
+    <Container open={isOpen}>
       <ArticleImageHandleWrapper onClick={isOpen ? onClose : onOpen}>
         <ArticleImageHandle />
       </ArticleImageHandleWrapper>
-      <ArticleImageList open={isOpen}>
-        {images.map((item) => {
-          return (
-            <ArticleImageWrapper>
-              <ArticleImage key={item.id} src={item.publicURL} alt={`article_image_${item.id}`} />
-              <ArticleImageHoverShadow />
-            </ArticleImageWrapper>
-          );
-        })}
-      </ArticleImageList>
+      {isOpen ? (
+        <ArticleImageList>
+          {images.map((item) => {
+            return (
+              <ArticleImageWrapper>
+                <ArticleImage key={item.id} src={item.publicURL} alt={`article_image_${item.id}`} />
+                <ArticleImageHoverShadow />
+              </ArticleImageWrapper>
+            );
+          })}
+        </ArticleImageList>
+      ) : (
+        <></>
+      )}
     </Container>
   );
 }
