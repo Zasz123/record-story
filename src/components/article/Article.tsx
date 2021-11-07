@@ -12,10 +12,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  position: relative;
 `;
 
 const ArticleContent = styled.article`
   overflow-y: auto;
+
+  height: 95%;
+  margin-bottom: 10px;
 `;
 
 const Title = styled.h1`

@@ -6,23 +6,21 @@ import { IArticle } from 'interfaces/article';
 
 const Container = styled.div<{ open?: boolean }>`
   width: 100%;
-  height: ${({ open }) => (open ? '400px' : undefined)};
+  height: ${({ open }) => (open ? '450px' : undefined)};
   background-color: white;
 
   position: relative;
-  left: 0;
-  bottom: 0;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   padding: 5px 5px 5px 5px;
-
-  overflow-x: auto;
-
   border-radius: 10px;
   box-shadow: 0px -1px 4px #b9b9b9;
+
+  overflow-x: auto;
+  overflow-y: hidden;
 
   &::-webkit-scrollbar {
     height: 10px;
@@ -45,8 +43,13 @@ const ArticleImageHandleWrapper = styled.div`
   width: 100%;
   cursor: pointer;
 
+  position: sticky;
+  top: 0;
+  left: 0;
+
   display: flex;
   justify-content: center;
+  align-content: center;
 `;
 
 const ArticleImageHandle = styled.hr`
@@ -93,9 +96,7 @@ const ArticleImageHoverShadow = styled.div`
 `;
 
 const ArticleImage = styled.img`
-  width: 350px;
-  height: auto;
-  max-height: 300px;
+  height: 250px;
 `;
 
 interface IProps {
