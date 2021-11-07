@@ -12,10 +12,15 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  position: relative;
 `;
 
 const ArticleContent = styled.article`
-  flex: 1;
+  overflow-y: auto;
+
+  height: 95%;
+  margin-bottom: 10px;
 `;
 
 const Title = styled.h1`
@@ -26,7 +31,7 @@ const Title = styled.h1`
 `;
 
 const Body = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.3;
 `;
 
