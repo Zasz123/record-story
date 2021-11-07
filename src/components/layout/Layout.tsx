@@ -25,11 +25,7 @@ const ArticleContainer = styled.main`
   padding: 40px;
 `;
 
-interface IProps {
-  children: React.ReactNode;
-}
-
-function Layout({ children }: IProps) {
+function Layout({ children, location }: any) {
   const articles = useArticleList();
 
   return (
@@ -38,7 +34,7 @@ function Layout({ children }: IProps) {
       <Container>
         {/* 선택된 index를 위한 provider */}
         <LayoutProvider>
-          <Sidebar articles={articles} />
+          <Sidebar articles={articles} pathname={location.pathname} />
           <ArticleContainer>{children}</ArticleContainer>
         </LayoutProvider>
       </Container>

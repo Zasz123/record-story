@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { navigate } from 'gatsby';
+import { navigate, PageProps } from 'gatsby';
 
 import styled from 'styled-components';
 import { animated, useSpring, useSprings } from 'react-spring';
@@ -35,13 +35,14 @@ const RollableRecord = styled(animated.img)`
   user-select: none;
 `;
 
-interface IProps {
+interface IProps extends PageProps {
   articles: Array<ISidebarItem>;
+  pathname: string;
 }
 
-function Sidebar({ articles }: IProps) {
+function Sidebar({ articles, pathname }: IProps) {
   const { selectedIndex, setSelectedIndex } = useLayoutContext();
-  const urlParams = useURLParams();
+  const urlParams = useURLParams({ pathname });
 
   const [ref, { height }] = useMeasure();
 
