@@ -61,4 +61,5 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-mdx`,
   ],
+  pathPrefix: '/record-story',
 };
