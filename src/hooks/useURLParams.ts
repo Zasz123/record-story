@@ -4,18 +4,21 @@ interface IURLParams {
   articleIndex: number;
 }
 
-export default function useURLParams() {
+interface IProps {
+  pathname: string;
+}
+
+export default function useURLParams({ pathname }: IProps) {
   const [data, setData] = useState<IURLParams>({
     articleIndex: 0,
   });
-  const urlParams = window.location.pathname;
 
   useEffect(() => {
     // index로 저장하기 때문에 1을 뺌
     setData({
-      articleIndex: Number(urlParams.split('/article/')[1]) - 1 || 0,
+      articleIndex: Number(pathname.split('/article/')[1]) - 1 || 0,
     });
-  }, [urlParams]);
+  }, [pathname]);
 
   return data;
 }
