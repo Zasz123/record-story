@@ -31,7 +31,7 @@ const Title = styled.h1`
 `;
 
 const Body = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.3;
 `;
 
