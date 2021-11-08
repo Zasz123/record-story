@@ -15,5 +15,5 @@ export interface IArticle {
 
 export interface IArticleImage {
   id: string;
-  publicURL: string;
+  url: string;
 }

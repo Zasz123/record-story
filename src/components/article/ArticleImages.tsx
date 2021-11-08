@@ -116,11 +116,11 @@ function ArticleImages({ images }: IProps) {
           {images.map((item) => {
             return (
               <ArticleImageWrapper>
-                <ArticleImage key={item.id} src={item.publicURL} alt={`article_image_${item.id}`} />
                 <ArticleImageHoverShadow />
               </ArticleImageWrapper>
             );
           })}
+              <ArticleImage key={item.id} src={item.url} alt={`article_image_${item.id}`} />
         </ArticleImageList>
       ) : (
         <></>

@@ -24,7 +24,7 @@ export default function useArticleList() {
     id: item.id,
     path: item.frontmatter.path,
     thumbnail: item.frontmatter.thumbnail.publicURL,
-    images: item.frontmatter.images,
+    images: item.frontmatter.images.map((item: any) => ({ ...item, url: item.publicURL })),
   }));
 
   return articles;
