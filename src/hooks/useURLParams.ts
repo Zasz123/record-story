@@ -14,7 +14,11 @@ export default function useURLParams({ pathname }: IProps) {
   });
 
   useEffect(() => {
-    let articleIndex = pathname.split('/')[2];
+    let articleIndex = pathname.split('/article/')[1];
+
+    if (articleIndex.includes('/')) {
+      [articleIndex] = articleIndex.split('/');
+    }
 
     if (articleIndex.includes('?')) {
       [articleIndex] = articleIndex.split('?');
