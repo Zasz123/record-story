@@ -14,9 +14,15 @@ export default function useURLParams({ pathname }: IProps) {
   });
 
   useEffect(() => {
+    let articleIndex = pathname.split('/')[2];
+
+    if (articleIndex.includes('?')) {
+      [articleIndex] = articleIndex.split('?');
+    }
+
     // index로 저장하기 때문에 1을 뺌
     setData({
-      articleIndex: Number(pathname.split('/article/')[1]) - 1 || 0,
+      articleIndex: Number(articleIndex) - 1 || 0,
     });
   }, [pathname]);
 
