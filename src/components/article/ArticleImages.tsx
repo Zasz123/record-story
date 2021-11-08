@@ -114,8 +114,8 @@ function ArticleImages({ images }: IProps) {
       {isOpen ? (
         <ArticleImageList>
           {images.map((item) => (
-            <ArticleImageWrapper>
-              <ArticleImage key={item.id} src={item.url} alt={`article_image_${item.id}`} />
+            <ArticleImageWrapper key={item.id}>
+              <ArticleImage src={item.url} alt={`article_image_${item.id}`} />
               <ArticleImageHoverShadow />
             </ArticleImageWrapper>
           ))}
