@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  pathPrefix: '/record-story',
+  pathPrefix: process.env.PREFIX_PATHS || '',
   siteMetadata: {
     title: `Record story`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: ``,
     author: `@gatsbyjs`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
