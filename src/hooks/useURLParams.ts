@@ -16,18 +16,20 @@ export default function useURLParams({ pathname }: IProps) {
   useEffect(() => {
     let articleIndex = pathname.split('/article/')[1];
 
-    if (articleIndex.includes('/')) {
-      [articleIndex] = articleIndex.split('/');
-    }
+    if (articleIndex !== undefined) {
+      if (articleIndex.includes('/')) {
+        [articleIndex] = articleIndex.split('/');
+      }
 
-    if (articleIndex.includes('?')) {
-      [articleIndex] = articleIndex.split('?');
-    }
+      if (articleIndex.includes('?')) {
+        [articleIndex] = articleIndex.split('?');
+      }
 
-    // index로 저장하기 때문에 1을 뺌
-    setData({
-      articleIndex: Number(articleIndex) - 1 || 0,
-    });
+      // index로 저장하기 때문에 1을 뺌
+      setData({
+        articleIndex: Number(articleIndex) - 1 || 0,
+      });
+    }
   }, [pathname]);
 
   return data;
