@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  pathPrefix: process.env.PREFIX_PATHS || '',
+  pathPrefix: '/record-story',
   siteMetadata: {
     title: `Record story`,
     description: ``,
