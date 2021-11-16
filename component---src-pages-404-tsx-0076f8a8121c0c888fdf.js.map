@@ -1,0 +1,1 @@
+{"version":3,"file":"component---src-pages-404-tsx-0076f8a8121c0c888fdf.js","mappings":"yJAIA,UAJA,WACE,OAAO","sources":["webpack://gatsby-starter-default/./src/pages/404.tsx"],"sourcesContent":["function NotFoundPage() {\r\n  return <div>dsadas</div>;\r\n}\r\n\r\nexport default NotFoundPage;\r\n"],"names":[],"sourceRoot":""}
