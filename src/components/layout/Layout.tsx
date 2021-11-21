@@ -21,8 +21,6 @@ const Container = styled.main`
 const ArticleContainer = styled.main`
   width: 1350px;
   height: 100%;
-
-  padding: 40px;
 `;
 
 function Layout({ children, location }: any) {

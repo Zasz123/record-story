@@ -16,6 +16,20 @@ const Container = styled.div`
 
 const ArticleContent = styled.article`
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #5a5a5a;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #bebebe;
+  }
+
+  padding: 40px;
 `;
 
 const Title = styled.h1`
