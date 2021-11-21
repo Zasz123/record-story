@@ -3,6 +3,8 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import { IArticle } from 'interfaces/article';
 
+import ArticleImages from './ArticleImages';
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -29,7 +31,7 @@ const ArticleContent = styled.article`
     background-color: #bebebe;
   }
 
-  padding: 40px;
+  padding: 40px 100px 40px 40px;
 `;
 
 const Title = styled.h1`
@@ -58,6 +60,7 @@ function Article({ article, body }: IProps) {
           <MDXRenderer>{body}</MDXRenderer>
         </Body>
       </ArticleContent>
+      <ArticleImages images={article.images} />
     </Container>
   );
 }
