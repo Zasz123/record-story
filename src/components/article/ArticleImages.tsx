@@ -6,11 +6,13 @@ import { useGesture } from 'react-use-gesture';
 import { IArticleImage } from 'interfaces/article';
 
 const Container = styled.ul`
+  overflow-y: scroll;
+  overflow-x: hidden;
+
   position: absolute;
   right: 0px;
   top: 0px;
 
-  width: 100px;
   height: 100vh;
 
   padding-top: 40px;
@@ -35,7 +37,7 @@ function ArticleImages({ images }: IProps) {
   const containerRef = useRef(null);
 
   const [{ x, opacity }, springAPI] = useSpring(() => ({
-    x: 0,
+    x: 200,
     opacity: 0.5,
   }));
 
@@ -43,11 +45,11 @@ function ArticleImages({ images }: IProps) {
     {
       onHover: ({ hovering }) => {
         if (hovering) {
-          springAPI({ x: -400, opacity: 1 });
+          springAPI({ x: 0, opacity: 1 });
         }
       },
       onMouseLeave: () => {
-        springAPI({ x: 0, opacity: 0.5 });
+        springAPI({ x: 200, opacity: 0.5 });
       },
     },
     { domTarget: containerRef },
