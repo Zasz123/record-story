@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { navigate, PageProps } from 'gatsby';
 
-import styled from 'styled-components';
-import { animated, useSpring, useSprings } from 'react-spring';
+import { useSpring, useSprings } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import useMeasure from 'react-use-measure';
 
@@ -10,30 +9,10 @@ import { useLayoutContext } from 'components/layout/Layout.provider';
 import { ISidebarItem } from 'interfaces/article';
 import useURLParams from 'hooks/useURLParams';
 
+import { Container, RollableRecord } from './SidebarWrapper';
 import SidebarCarousel from './SidebarCarousel';
 
 import RecordImage from '../../images/record.png';
-import RecordPlayer from '../../images/record-player.jpg';
-
-const Container = styled.nav`
-  width: 570px;
-  height: 100%;
-
-  flex: 0 0 570px;
-  position: relative;
-
-  background-image: url(${RecordPlayer});
-  background-position: right;
-`;
-
-const RollableRecord = styled(animated.img)`
-  width: auto;
-  height: 100%;
-  position: absolute;
-  left: -450px;
-  pointer-events: none;
-  user-select: none;
-`;
 
 interface IProps extends PageProps {
   articles: Array<ISidebarItem>;
