@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { navigate, PageProps } from 'gatsby';
+import { navigate } from 'gatsby';
 
 import { useSpring, useSprings } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
@@ -14,7 +14,7 @@ import SidebarCarousel from './SidebarCarousel';
 
 import RecordImage from '../../images/record.png';
 
-interface IProps extends PageProps {
+interface IProps {
   articles: Array<ISidebarItem>;
   pathname: string;
 }
