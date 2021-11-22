@@ -17,7 +17,7 @@ const Container = styled.div`
 `;
 
 const ArticleContent = styled.article`
-  overflow-y: auto;
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
     width: 10px;
