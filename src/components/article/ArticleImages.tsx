@@ -1,128 +1,73 @@
+import { RefObject } from 'react';
 import styled from 'styled-components';
+import { animated } from '@react-spring/web';
+import { SpringValue } from '@react-spring/core';
 
-import useBoolean from 'hooks/useBoolean';
+import { IArticleImage } from 'interfaces/article';
 
-import { IArticle } from 'interfaces/article';
+const Container = styled(animated.div)`
+  overflow: hidden;
 
-const Container = styled.div<{ open?: boolean }>`
-  width: 100%;
-  height: ${({ open }) => (open ? '450px' : undefined)};
-  background-color: white;
-
-  position: relative;
+  position: absolute;
+  right: 10px;
+  top: 0px;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 40px;
 
-  padding: 5px 5px 5px 5px;
-  border-radius: 10px;
-  box-shadow: 0px -1px 4px #b9b9b9;
+  height: 100vh;
 
-  overflow-x: auto;
-  overflow-y: hidden;
+  padding-top: 40px;
+  padding-left: 20px;
+  padding-bottom: 40px;
+
+  overflow-y: auto;
+
+  background-color: #272727;
 
   &::-webkit-scrollbar {
-    height: 10px;
+    width: 3px;
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: #5a5a5a;
-
-    border-radius: 20px;
   }
 
   &::-webkit-scrollbar-track {
     background-color: #bebebe;
-
-    border-radius: 20px;
   }
 `;
 
-const ArticleImageHandleWrapper = styled.div`
-  width: 100%;
-  cursor: pointer;
-
-  position: sticky;
-  top: 0;
-  left: 0;
-
-  display: flex;
-  justify-content: center;
-  align-content: center;
-`;
-
-const ArticleImageHandle = styled.hr`
-  width: 50px;
-  height: 5px;
-  margin: 10px;
-  background-color: #7d7d7d;
-`;
-
-const ArticleImageList = styled.article`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-
-  display: flex;
-  gap: 20px;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-self: flex-start;
-
-  padding: 5px;
-`;
-
-const ArticleImageWrapper = styled.button`
-  border: none;
-  background: none;
-
-  position: relative;
-`;
-
-const ArticleImageHoverShadow = styled.div`
-  cursor: pointer;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  &:hover {
-    box-shadow: inset 0px 0px 60px #757575;
-  }
-`;
-
-const ArticleImage = styled.img`
-  height: 250px;
+const Image = styled(animated.img)`
+  width: 300px;
+  height: auto;
 `;
 
 interface IProps {
-  images: IArticle['images'];
+  images: IArticleImage[];
+  imageCarouselRef: RefObject<HTMLDivElement | null>;
+  springProps: {
+    width: SpringValue<number>;
+    opacity: SpringValue<number>;
+    x: SpringValue<number>;
+  };
 }
 
-function ArticleImages({ images }: IProps) {
-  const [isOpen, , onOpen, onClose] = useBoolean();
-
+function ArticleImages({ images, imageCarouselRef, springProps }: IProps) {
   return (
-    <Container open={isOpen}>
-      <ArticleImageHandleWrapper onClick={isOpen ? onClose : onOpen}>
-        <ArticleImageHandle />
-      </ArticleImageHandleWrapper>
-      {isOpen ? (
-        <ArticleImageList>
-          {images.map((item) => (
-            <ArticleImageWrapper key={item.id}>
-              <ArticleImage src={item.url} alt={`article_image_${item.id}`} />
-              <ArticleImageHoverShadow />
-            </ArticleImageWrapper>
-          ))}
-        </ArticleImageList>
-      ) : (
-        <></>
-      )}
+    <Container
+      ref={imageCarouselRef as RefObject<HTMLDivElement>}
+      style={{ width: springProps.width, opacity: springProps.opacity }}
+    >
+      {images.map((item) => (
+        <Image
+          key={item.id}
+          alt={`article_image_${item.id}`}
+          src={item.url}
+          style={{ x: springProps.x, opacity: springProps.opacity }}
+        />
+      ))}
     </Container>
   );
 }
