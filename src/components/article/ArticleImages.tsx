@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import { RefObject } from 'react';
 import styled from 'styled-components';
-import { useSpring, animated } from '@react-spring/web';
-import { useGesture } from 'react-use-gesture';
+import { animated } from '@react-spring/web';
+import { SpringValue } from '@react-spring/core';
 
 import { IArticleImage } from 'interfaces/article';
 
@@ -12,71 +12,61 @@ const Container = styled(animated.div)`
   right: 10px;
   top: 0px;
 
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
   height: 100vh;
 
   padding-top: 40px;
   padding-left: 20px;
+  padding-bottom: 40px;
 
-  background-color: #929292;
-`;
+  overflow-y: auto;
 
-const ImageWrapper = styled(animated.li)`
-  list-style: none;
+  background-color: #272727;
 
-  margin-bottom: 20px;
-`;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
 
-const ImageShadow = styled.span`
-  cursor: pointer;
+  &::-webkit-scrollbar-thumb {
+    background-color: #5a5a5a;
+  }
 
-  display: block;
-  width: 100%;
-  height: 100%;
-
-  &:hover {
-    box-shadow: inset 0 0 10px #6b6b6b;
+  &::-webkit-scrollbar-track {
+    background-color: #bebebe;
   }
 `;
 
-const Image = styled.img`
+const Image = styled(animated.img)`
   width: 300px;
   height: auto;
 `;
 
 interface IProps {
   images: IArticleImage[];
+  imageCarouselRef: RefObject<HTMLDivElement | null>;
+  springProps: {
+    width: SpringValue<number>;
+    opacity: SpringValue<number>;
+    x: SpringValue<number>;
+  };
 }
 
-function ArticleImages({ images }: IProps) {
-  const containerRef = useRef(null);
-
-  const [{ x, opacity, width }, springAPI] = useSpring(() => ({
-    x: 0,
-    opacity: 0.5,
-    width: 100,
-  }));
-
-  useGesture(
-    {
-      onHover: ({ hovering }) => {
-        if (hovering) {
-          springAPI({ x: 0, opacity: 1, width: 350 });
-        }
-      },
-      onMouseLeave: () => {
-        springAPI({ x: 0, opacity: 0.5, width: 100 });
-      },
-    },
-    { domTarget: containerRef },
-  );
-
+function ArticleImages({ images, imageCarouselRef, springProps }: IProps) {
   return (
-    <Container ref={containerRef} style={{ width, opacity }}>
+    <Container
+      ref={imageCarouselRef as RefObject<HTMLDivElement>}
+      style={{ width: springProps.width, opacity: springProps.opacity }}
+    >
       {images.map((item) => (
-        <ImageWrapper key={item.id} style={{ x, opacity }}>
-          <Image alt={`article_image_${item.id}`} src={item.url} />
-          <ImageShadow />
-        </ImageWrapper>
+        <Image
+          key={item.id}
+          alt={`article_image_${item.id}`}
+          src={item.url}
+          style={{ x: springProps.x, opacity: springProps.opacity }}
+        />
       ))}
     </Container>
   );
