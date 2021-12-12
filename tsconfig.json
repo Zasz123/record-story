@@ -8,8 +8,12 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "src",
     "paths": {
-      "components/*": ["./components/*"],
-      "pages/*": ["./pages/*"]
+      "@components/*": ["./components/*"],
+      "@pages/*": ["./pages/*"],
+      "@styles/*": ["./styles/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@modules/*": ["./modules/*"],
+      "@interfaces/*": ["./interfaces/*"]
     },
     "allowJs": true,
     "jsx": "preserve"

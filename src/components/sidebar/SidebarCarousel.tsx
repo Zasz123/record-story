@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { animated } from 'react-spring';
 import { SpringValue } from '@react-spring/core';
-import { ISidebarItem } from 'interfaces/article';
+
+import { ISidebarItem } from '@interfaces/article';
 
 const Container = styled.div`
   width: 100%;

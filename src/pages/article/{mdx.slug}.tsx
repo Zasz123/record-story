@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 
-import Article from 'components/article/Article';
+import Article from '@components/article/Article';
 
 function ArticlePage({ data }: any) {
   return (

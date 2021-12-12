@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { animated } from '@react-spring/web';
 import { SpringValue } from '@react-spring/core';
 
-import { IArticleImage } from 'interfaces/article';
+import { IArticleImage } from '@interfaces/article';
 
 const Container = styled(animated.div)`
   overflow: hidden;

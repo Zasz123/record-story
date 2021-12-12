@@ -4,7 +4,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { useGesture } from 'react-use-gesture';
 import { useSpring } from '@react-spring/core';
 
-import { IArticle } from 'interfaces/article';
+import { IArticle } from '@interfaces/article';
 
 import ArticleImages from './ArticleImages';
 

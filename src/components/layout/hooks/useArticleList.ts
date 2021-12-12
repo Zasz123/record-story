@@ -1,5 +1,6 @@
 import { useStaticQuery, graphql } from 'gatsby';
-import { ISidebarItem } from '../../../interfaces/article';
+
+import { ISidebarItem } from '@interfaces/article';
 
 export default function useArticleList() {
   const articles: Array<ISidebarItem> = useStaticQuery(graphql`

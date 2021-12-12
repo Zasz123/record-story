@@ -1,6 +1,6 @@
 import styled, { ThemeProvider } from 'styled-components';
-import GlobalStyles from 'styles/GlobalStyles';
-import Theme from 'styles/Theme';
+import GlobalStyles from '@styles/GlobalStyles';
+import Theme from '@styles/Theme';
 
 import useArticleList from './hooks/useArticleList';
 
