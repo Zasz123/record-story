@@ -1,5 +1,5 @@
 function NotFoundPage() {
-  return <div>dsadas</div>;
+  return <div>404</div>;
 }
 
 export default NotFoundPage;

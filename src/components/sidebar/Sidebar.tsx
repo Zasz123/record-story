@@ -5,9 +5,9 @@ import { useSpring, useSprings } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import useMeasure from 'react-use-measure';
 
-import { useLayoutContext } from 'components/layout/Layout.provider';
-import { ISidebarItem } from 'interfaces/article';
-import useURLParams from 'hooks/useURLParams';
+import { useLayoutContext } from '@components/layout/Layout.provider';
+import { ISidebarItem } from '@interfaces/article';
+import useURLParams from '@hooks/useURLParams';
 
 import { Container, RollableRecord } from './SidebarWrapper';
 import SidebarCarousel from './SidebarCarousel';
