@@ -1,3 +1,6 @@
+import { Provider } from 'react-redux';
+import store from '@modules/store';
+
 import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyles from '@styles/GlobalStyles';
 import Theme from '@styles/Theme';
@@ -27,16 +30,18 @@ function Layout({ children, location }: any) {
   const articles = useArticleList();
 
   return (
-    <ThemeProvider theme={Theme}>
-      <GlobalStyles />
-      <Container>
-        {/* 선택된 index를 위한 provider */}
-        <LayoutProvider>
-          <Sidebar articles={articles} pathname={location.pathname} />
-          <ArticleContainer>{children}</ArticleContainer>
-        </LayoutProvider>
-      </Container>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={Theme}>
+        <GlobalStyles />
+        <Container>
+          {/* 선택된 index를 위한 provider */}
+          <LayoutProvider>
+            <Sidebar articles={articles} pathname={location.pathname} />
+            <ArticleContainer>{children}</ArticleContainer>
+          </LayoutProvider>
+        </Container>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
