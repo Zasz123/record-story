@@ -6,6 +6,7 @@ export interface ISidebarItem {
 }
 
 export interface IArticle {
+  id: number;
   title: string;
   startDate: Date;
   endDate: Date;

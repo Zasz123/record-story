@@ -1,9 +1,12 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { navigate } from 'gatsby';
 
 import { useSpring, useSprings } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 import useMeasure from 'react-use-measure';
+
+import { articleActions } from '@modules/article/articleSlice';
 
 import { useLayoutContext } from '@components/layout/Layout.provider';
 import { ISidebarItem } from '@interfaces/article';
@@ -82,6 +85,12 @@ function Sidebar({ articles, pathname }: IProps) {
       return { x, y, scale, display: 'block' };
     });
   });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(articleActions);
+  }, [dispatch]);
 
   useEffect(() => {
     if (selectedIndex !== urlParams.articleIndex) {
