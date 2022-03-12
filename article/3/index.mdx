@@ -13,7 +13,7 @@ import { CustomListWrapper, CustomListItem } from '../../src/components/mdx/List
 
 JOURNEY SPACE는 GDG 해커톤에 참여하여 개발했던 일기 서비스입니다.
 
-팀원은 1 디자이너, 1 서버 개발자, 2 클라이언트 개발자로 구성되었으며, 저는 클라이언트 개발자로 참여했습니다.
+팀원은 디자이너 - 1,서버 개발자 - 1, 클라이언트 개발자 - 2 로 구성되었으며, 저는 클라이언트 개발자로 참여했습니다.
 
 https://github.com/gdg14/gdg-journeyspace-client
 
@@ -31,9 +31,7 @@ JOURNEY SPACE는 험난한 세상 속에서 우리 자신을 잃지 않기 위�
 
 <CustomListWrapper>
   <CustomListItem>React.JS</CustomListItem>
-  <CustomListItem>Apollo</CustomListItem>
   <CustomListItem>GraphQL</CustomListItem>
-  <CustomListItem>Spring</CustomListItem>
 </CustomListWrapper>
 
 <br />
@@ -64,60 +62,4 @@ GDG 해커톤에 참여해 "랜덤 일기" 의견을 내었는데, 팀원분들�
 
 또한 해커톤의 특성상 처음 보는 사람과 협업해야 합니다.
 
-그렇기에 기본적으로 Playground라는 문서를 지원하는 GraphQL을 선택했습니다.
-
-<br />
-
-<MainHeader>어려웠던 점</MainHeader>
-
-<SubHeader>1. 달력</SubHeader>
-
-기존에 달력이 필요했으면 다른 달력 UI를 지원하는 라이브러리를 사용했었습니다.
-
-하지만 원하는 디자인을 구현하기 위해 이번에는 moment 라이브러리로 달력을 직접 구현했습니다.
-
-라이브러리로 날짜를 직접 조절하고, 주 별로 요일을 구분하는 등 직접 구현해야 하는 부분들이 어려웠습니다.
-
-<br />
-
-하지만 달력의 세부적인 부분들을 컴포넌트 단위로 구분하고 분리하니 구현이 훨씬 수월해졌습니다.
-
-요소를 컴포넌트 단위로 구분하고, 분리하는 것이 얼마나 중요한 것인가 다시한번 느낀 부분이었습니다.
-
-<br />
-
-<SubHeader>2. 처음 보는 클라이언트 개발자와의 협업</SubHeader>
-
-저를 포함하여 팀에 클라이언트 개발자가 두 명이었습니다.
-
-보통 이런 대회를 지인들과 진행하다보니 포지션당 한 명이 맡을 때가 많았습니다.
-
-하지만 이번 대회는 혼자 나왔고, 같은 포지션의 개발자와 협업하게 되었습니다.
-
-<br />
-
-처음에는 어떻게 기술 스택를 맞출지, 어떻게 작업을 나누고 담당해야 효율적으로 개발할 수 있을지에 어려움을 느꼈습니다.
-
-이 때 클라이언트 개발자분께서 기술 스택을 React.JS를 사용하도록 양보해주셨고, Github의 Projects 탭을 알려주셔서 작업별로 잘 나눌 수 있었습니다.
-
-<br />
-
-정말 많은 것을 배웠던 것 같습니다.
-
-저는 React.JS밖에 할 줄 몰른다는 핑계로 선뜻 양보하지 못했습니다. 하지만 클라이언트 개발자분께서는 React.JS를 조금 해보았다는 이유 만으로 시원하게 기술 스택을 양보해주셔서 원활하게 개발을 진행할 수 있었습니다.
-
-또, 제한된 상황에서 효율적으로 사용할 수 있는 협업 툴을 선택하여 바로 작업을 나누는 능력에 감탄했습니다.
-
-이러한 것들이 커뮤니케이션 능력이고, 협업 능력이라는 것을 느낄 수 있었습니다.
-
-<br />
-
-<MainHeader>아쉬웠던 점</MainHeader>
-
-<SubHeader>1. Apollo Cache</SubHeader>
-
-Apollo를 사용했기에 Apollo에서 지원하는 Cache를 사용하려 했습니다.
-
-하지만 빠른 개발을 위해 Apollo Cache을 제대로 활용하지는 못했고, 그저 reactive variable만으로 전역 상태를 관리했던 것이 아쉬웠습니다.
-
-다음에 Apollo를 사용하여 개발을 진행한다면 Apollo Cache를 확실히 숙지하여 사용하고 싶습니다.
+그렇기에 추가적인 작업 없이 API 문서(Playground)를 지원하는 GraphQL을 선택했습니다.
