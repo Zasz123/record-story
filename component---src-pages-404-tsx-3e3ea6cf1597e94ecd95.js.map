@@ -1,0 +1,1 @@
+{"version":3,"file":"component---src-pages-404-tsx-3e3ea6cf1597e94ecd95.js","mappings":"yJAIA,UAJA,WACE,OAAO","sources":["webpack://gatsby-starter-default/./src/pages/404.tsx"],"sourcesContent":["function NotFoundPage() {\r\n  return <div>404</div>;\r\n}\r\n\r\nexport default NotFoundPage;\r\n"],"names":[],"sourceRoot":""}
