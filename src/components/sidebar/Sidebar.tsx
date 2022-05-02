@@ -28,6 +28,7 @@ function Sidebar({ articles, pathname }: IProps) {
   const [springProps, springAPI] = useSpring(() => ({
     rotate: 0,
   }));
+
   const [carouselProps, carouselAPI] = useSprings(
     articles.length,
     (index) => ({

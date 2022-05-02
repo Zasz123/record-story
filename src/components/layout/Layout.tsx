@@ -1,3 +1,5 @@
+import type { PageProps } from 'gatsby';
+
 import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyles from '@styles/GlobalStyles';
 import Theme from '@styles/Theme';
@@ -23,7 +25,7 @@ const ArticleContainer = styled.main`
   height: 100%;
 `;
 
-function Layout({ children, location }: any) {
+function Layout({ children, location }: PageProps) {
   const articles = useArticleList();
 
   return (
