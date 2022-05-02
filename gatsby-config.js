@@ -1,7 +1,10 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 const path = require('path');
 
 module.exports = {
-  pathPrefix: '/record-story',
+  pathPrefix: process.env.GATSBY_PATH_PREFIX,
   siteMetadata: {
     title: `Record story`,
     description: ``,
