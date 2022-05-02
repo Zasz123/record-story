@@ -30,7 +30,6 @@ function Layout({ children, location }: any) {
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
       <Container>
-        {/* 선택된 index를 위한 provider */}
         <LayoutProvider>
           <Sidebar articles={articles} pathname={location.pathname} />
           <ArticleContainer>{children}</ArticleContainer>

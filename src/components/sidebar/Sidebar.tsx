@@ -32,7 +32,7 @@ function Sidebar({ articles, pathname }: IProps) {
     articles.length,
     (index) => ({
       x: index === selectedIndex ? 250 : 50,
-      y: index === selectedIndex ? height * 0.4 : (index - selectedIndex) * height,
+      y: index === selectedIndex ? height * 0.4 : (index - selectedIndex) * (height * 0.8),
       scale: index === selectedIndex ? 1 : 0.7,
       display: 'block',
     }),
