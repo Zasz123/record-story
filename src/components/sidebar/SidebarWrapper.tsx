@@ -4,6 +4,8 @@ import { animated } from 'react-spring';
 import RecordPlayer from '../../images/record-player.jpg';
 
 export const Container = styled.nav`
+  cursor: grab;
+
   width: 570px;
   height: 100%;
 
@@ -12,6 +14,10 @@ export const Container = styled.nav`
 
   background-image: url(${RecordPlayer});
   background-position: right;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 export const RollableRecord = styled(animated.img)`

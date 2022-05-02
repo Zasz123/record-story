@@ -32,7 +32,7 @@ function Sidebar({ articles, pathname }: IProps) {
     articles.length,
     (index) => ({
       x: index === selectedIndex ? 250 : 50,
-      y: index === selectedIndex ? height * 0.5 - 100 : (index - selectedIndex) * height,
+      y: index === selectedIndex ? height * 0.4 : (index - selectedIndex) * height,
       scale: index === selectedIndex ? 1 : 0.7,
       display: 'block',
     }),
@@ -43,8 +43,17 @@ function Sidebar({ articles, pathname }: IProps) {
     const newIndex = selectedIndex + (directionY > 0 ? -1 : 1);
 
     if (active && distance > height * 0.15) {
-      if (newIndex < 0 || newIndex > articles.length - 1) {
-        // 이미지 length보다 더 커지거나 작아지면 막는 코드
+      if (newIndex < 0) {
+        setSelectedIndex(articles.length - 1);
+        navigate(articles[articles.length - 1].path);
+        cancel();
+        return;
+      }
+
+      if (newIndex > articles.length - 1) {
+        setSelectedIndex(0);
+        navigate(articles[0].path);
+        cancel();
         return;
       }
 
@@ -60,23 +69,22 @@ function Sidebar({ articles, pathname }: IProps) {
     });
 
     carouselAPI.start((index) => {
-      if (index < selectedIndex - 1 || index > selectedIndex + 1) {
+      if (index < selectedIndex - 2 || index > selectedIndex + 2) {
         return { display: 'none' };
       }
 
       const nowIndex = index - selectedIndex;
 
       let x = 50;
-      let y = nowIndex * height;
+      let y = nowIndex * (height * 0.8);
       let scale = 0.7;
 
       if (index === selectedIndex) {
         x = 250;
-        y = height * 0.5 - 100;
+        y = height * 0.4;
         scale = 1;
       }
 
-      // 스크롤시의 움직인만큼 더해줌
       y += active ? moveY : 0;
 
       return { x, y, scale, display: 'block' };
